@@ -14,3 +14,21 @@ class Post(models.Model):
     def __str__(self):
         """ string representation of Post"""
         return self.title
+
+
+class Category(models.Model):
+    """ categories of blog posts """
+
+    name = models.CharField(max_length=128)
+    description = models.TextField(blank=True)
+    posts = models.ManyToManyField(Post,
+                                   blank=True,
+                                   related_name='categories')
+
+    def __str__(self):
+        """display of self"""
+        return self.name
+
+    class Meta:
+        """class about Categories"""
+        verbose_name_plural = 'Categories'
