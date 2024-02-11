@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 from blogging.models import Post
 import datetime
-# import utc
+from datetime import timezone
 # needed to change it since latest version of Django doesn't seem like having timezone.utc
 
 
@@ -12,7 +12,7 @@ class FrontEndTestCase(TestCase):
 
     def setUp(self):
         """set up"""
-        self.now = datetime.datetime.now(datetime.UTC) # needed to change this for a timezone-aware object instead of utcnow()
+        self.now = datetime.datetime.now().replace(tzinfo=timezone.utc) # needed to change this for a timezone-aware object instead of utcnow()
         self.timedelta = datetime.timedelta(15)
         author = User.objects.get(pk=1)
         for count in range(1, 11):
