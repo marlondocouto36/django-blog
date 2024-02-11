@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 from blogging.models import Post
 import datetime
-# import utc
+import utc
 # needed to change it since latest version of Django doesn't seem like having timezone.utc
 
 
