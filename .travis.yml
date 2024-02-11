@@ -6,4 +6,5 @@ install:
   - python manage.py makemigrations
   - python manage.py migrate
 script:
+  - black --check blogging mysite polling --exclude="blogging/migrations/"
   - python manage.py test
