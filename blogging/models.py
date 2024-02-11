@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 class Post(models.Model):
     """class of post model inheriting from Model"""
+
     title = models.CharField(max_length=128)
     text = models.TextField(blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -12,18 +13,16 @@ class Post(models.Model):
     published_date = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
-        """ string representation of Post"""
+        """string representation of Post"""
         return self.title
 
 
 class Category(models.Model):
-    """ categories of blog posts """
+    """categories of blog posts"""
 
     name = models.CharField(max_length=128)
     description = models.TextField(blank=True)
-    posts = models.ManyToManyField(Post,
-                                   blank=True,
-                                   related_name='categories')
+    posts = models.ManyToManyField(Post, blank=True, related_name="categories")
 
     def __str__(self):
         """display of self"""
@@ -31,4 +30,5 @@ class Category(models.Model):
 
     class Meta:
         """class about Categories"""
-        verbose_name_plural = 'Categories'
+
+        verbose_name_plural = "Categories"

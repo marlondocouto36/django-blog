@@ -1,4 +1,5 @@
 from django.shortcuts import render
+
 # from django.http import Http404
 from polling.models import Poll
 from django.views.generic.list import ListView
@@ -6,15 +7,17 @@ from django.views.generic.detail import DetailView
 
 
 class PollListView(ListView):
-    """ Django based list view"""
+    """Django based list view"""
+
     model = Poll
-    template_name = 'polling/list.html'
+    template_name = "polling/list.html"
 
 
 class PollDetailView(DetailView):
-    """ Django based list detail view"""
+    """Django based list detail view"""
+
     model = Poll
-    template_name = 'polling/detail.html'
+    template_name = "polling/detail.html"
 
     def post(self, request, *args, **kwargs):
         """post method within view class"""
@@ -28,6 +31,7 @@ class PollDetailView(DetailView):
 
         context = {"object": poll}
         return render(request, "polling/detail.html", context)
+
 
 # def list_view(request):
 #     """view of list of polls"""
