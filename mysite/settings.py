@@ -39,6 +39,11 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "polling",
     "blogging",
+    "django.contrib.sites",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.github",
 ]
 
 MIDDLEWARE = [
@@ -49,7 +54,17 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
 ]
+
+AUTHENTICATION_BACKENDS = [
+    # "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",  # new
+]
+
+SITE_ID = 1
+
+ACCOUNT_EMAIL_VERIFICATION = "none"
 
 ROOT_URLCONF = "mysite.urls"
 
@@ -121,5 +136,6 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
-LOGIN_URL = "/login/"
+# LOGIN_URL = "/login/"
+
 LOGIN_REDIRECT_URL = "/"
