@@ -1,5 +1,8 @@
+"""models"""
+
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib import admin
 
 
 class Post(models.Model):
@@ -32,3 +35,21 @@ class Category(models.Model):
         """class about Categories"""
 
         verbose_name_plural = "Categories"
+
+class CategoryInline(admin.TabularInline):
+    """ In line category """
+    model = Category.posts.through
+    extra = 1
+
+
+class PostAdmin(admin.ModelAdmin):
+    """post admin class"""
+    list_display = ('title', 'author', 'created_date', 'published_date')
+    search_fields = ('title', 'author__username')
+    inlines = [CategoryInline]
+
+
+class CategoryAdmin(admin.ModelAdmin):
+    """category admin class"""
+    list_display = ('name', 'description')
+    exclude = ('posts',)
